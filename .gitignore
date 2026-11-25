@@ -1,0 +1,10 @@
+tools/
+data/
+__pycache__/
+*.pyc
+judge/__pycache__/
+*.log
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

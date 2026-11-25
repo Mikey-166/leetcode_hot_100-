@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1120" id="metaThemeColor" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>AlgoForge · 力扣 Hot 100 四语言精讲与华为实习冲刺平台</title>
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg" />
+  <link rel="apple-touch-icon" href="./icons/icon.svg" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Windows 桌面端左侧导航栏 -->
+    <aside class="sidebar">
+      <div class="brand-box">
+        <img src="./icons/icon.svg" alt="Logo" class="brand-logo" />
+        <div>
+          <div class="brand-title">AlgoForge 刷题舱</div>
+          <div class="brand-sub">Hot 100 四语言 · 华为通关</div>
+        </div>
+      </div>
+
+      <nav class="nav-list" id="desktopNav">
+        <button class="nav-btn active" data-view="schedule">
+          <span>📅</span>
+          <span>日程计划与打卡</span>
+          <span class="nav-badge" id="navBadgeDays">0/42</span>
+        </button>
+        <button class="nav-btn" data-view="problems">
+          <span>📚</span>
+          <span>Hot 100 四语言精讲</span>
+          <span class="nav-badge" id="navBadgeProbs">0/100</span>
+        </button>
+        <button class="nav-btn" data-view="analyzer">
+          <span>🔬</span>
+          <span>代码片段智能解析</span>
+        </button>
+        <button class="nav-btn" data-view="huawei">
+          <span>🎯</span>
+          <span>华为机考与面试宝典</span>
+        </button>
+      </nav>
+
+      <!-- 15分钟止损法则番茄钟 -->
+      <div class="pomodoro-card">
+        <div class="pomo-header">
+          <span>⏱️ 15分钟破题止损钟</span>
+          <span id="pomoStatusText">待命</span>
+        </div>
+        <div class="pomo-time" id="pomoDisplay">15:00</div>
+        <div class="pomo-actions">
+          <button class="btn btn-primary btn-sm" style="flex:1" id="btnPomoToggle">开始计时</button>
+          <button class="btn btn-sm" id="btnPomoReset">重置</button>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:7px;line-height:1.4;">
+          💡 卡壳满 15 分钟立刻看『一句话破题』，理解后关掉题解独立默写！
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="btn btn-sm" style="flex:1" id="btnThemeSide" title="切换深浅色主题">🌓 主题</button>
+        <button class="btn btn-sm" style="flex:1" id="btnSyncSettings" title="多设备同步设置">📡 同步</button>
+        <button class="btn btn-sm" style="flex:1" id="btnBackupSide" title="备份或恢复学习进度">💾 备份</button>
+      </div>
+    </aside>
+
+    <!-- 主工作区 -->
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="topbar-title" id="topbarTitle">📅 6周冲刺日程与每日打卡</div>
+          <div class="sync-pill" id="syncStatusPill" title="多设备自动双向同步，离线时保存在本地">
+            <span class="sync-dot offline" id="syncDot"></span>
+            <span id="syncText">本地离线存储已就绪</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-sm" id="btnInstallPwa" style="display:none;">⬇️ 一键安装到桌面</button>
+          <button class="btn btn-primary btn-sm" id="btnMobileConnect">📲 下载手机版 (iOS / Android)</button>
+          <button class="btn btn-sm" id="btnThemeTop" title="切换深色/浅色模式">🌓</button>
+        </div>
+      </header>
+
+      <main class="view-container" id="viewContainer">
+        <!-- 动态渲染当前视图 -->
+      </main>
+    </div>
+  </div>
+
+  <!-- 移动端底部悬浮导航栏 -->
+  <nav class="mobile-tabbar" id="mobileNav">
+    <button class="m-tab active" data-view="schedule">
+      <span class="m-ico">📅</span>
+      <span>今日打卡</span>
+    </button>
+    <button class="m-tab" data-view="problems">
+      <span class="m-ico">📚</span>
+      <span>Hot100题库</span>
+    </button>
+    <button class="m-tab" data-view="analyzer">
+      <span class="m-ico">🔬</span>
+      <span>代码解析</span>
+    </button>
+    <button class="m-tab" data-view="huawei">
+      <span class="m-ico">🎯</span>
+      <span>华为宝典</span>
+    </button>
+  </nav>
+
+  <!-- 通用模态框容器 -->
+  <div class="modal-mask" id="modalMask">
+    <div class="modal-box" id="modalBox"></div>
+  </div>
+
+  <!-- 轻提示 Toast -->
+  <div class="toast-msg" id="toastMsg"></div>
+
+  <!-- 核心数据与模块脚本 -->
+  <script src="./js/data-problems.js"></script>
+  <script src="./js/data-schedule-guide.js"></script>
+  <script src="./js/data-judge.js"></script>
+  <script src="./js/utils-qr-highlight.js"></script>
+  <script src="./js/code-analyzer.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

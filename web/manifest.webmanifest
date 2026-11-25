@@ -1,0 +1,20 @@
+{
+  "name": "AlgoForge · 力扣Hot100与华为通关平台",
+  "short_name": "Hot100刷题",
+  "description": "大三备战华为实习专属力扣 Hot 100 四语言精讲、6周可定制打卡计划与代码片段智能解析平台（适配 Windows 与小米澎湃 OS）",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b1120",
+  "theme_color": "#2563eb",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
